@@ -32,6 +32,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'devise'
+gem 'jquery-rails'
+
 # Load environment variables from .env
 gem "dotenv-rails"
 
@@ -54,7 +57,6 @@ group :development do
 end
 
 group :test do
-  gem "factory_bot_rails"
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
