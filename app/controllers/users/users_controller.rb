@@ -4,5 +4,9 @@ class Users::UsersController < ApplicationController
   
     before_action :authenticate_user!
   
-    def index; end
+    def index
+        @articles = Article.all
+    end
+
+    def edit_profile; end
 end

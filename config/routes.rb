@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   draw :users
   
+  resources :articles
   root to:'welcome#index'
 end

@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: articles
+#
+#  id           :bigint           not null, primary key
+#  title        :string
+#  text         :text
+#  is_published :boolean
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+one:
+  title: MyString
+  text: MyText
+  is_published: false
+
+two:
+  title: MyString
+  text: MyText
+  is_published: false

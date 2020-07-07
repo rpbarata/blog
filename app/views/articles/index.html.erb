@@ -1,0 +1,11 @@
+<table class="table">
+    <tbody>
+        <% @articles.each do |article| %>
+            <tr>
+            <td><b><%= article.title %></b></td>
+            <td><%= h truncate(article.text, :length => 40) %></td>
+            <td><%= link_to 'Show', article_path(article) %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
