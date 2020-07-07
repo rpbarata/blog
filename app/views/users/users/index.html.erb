@@ -6,7 +6,7 @@
             <% if article.user == current_user%>
                 <tr>
                 <td><b><%= article.title %></b></td>
-                <td><%= h truncate(article.text, :length => 40) %></td>
+                <td><%= article.is_published ? "Published" : "Not Published" %></td>
                 <td><%= link_to 'Show', article_path(article) %></td>
                 </tr>
             <% end %>
