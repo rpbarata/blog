@@ -7,7 +7,7 @@
                 <tr>
                 <td><b><%= article.title %></b></td>
                 <td><%= article.is_published ? "Published" : "Not Published" %></td>
-                <td><%= link_to 'Show', article_path(article) %></td>
+                <td><%= link_to 'Edit', edit_users_article_path(article) %></td>
                 </tr>
             <% end %>
         <% end %>
