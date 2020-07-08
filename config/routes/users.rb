@@ -5,4 +5,6 @@ namespace :users do
     
     get "/", to: 'users#index', as: "root_path"
     get 'edit_profile', to: 'users#edit_profile'
+
+
 end
