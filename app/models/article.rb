@@ -12,7 +12,7 @@
 #
 class Article < ApplicationRecord
     belongs_to :user
-    has_many :comments
+    has_many :comments, dependent: :destroy
     
     validates   :title, 
                 presence: { message: "tem de ter um titulo bro"},
