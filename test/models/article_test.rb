@@ -6,6 +6,7 @@
 #  title        :string
 #  text         :text
 #  is_published :boolean
+#  user_id      :bigint
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

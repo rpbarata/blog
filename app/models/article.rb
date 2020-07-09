@@ -6,11 +6,13 @@
 #  title        :string
 #  text         :text
 #  is_published :boolean
+#  user_id      :bigint
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
 class Article < ApplicationRecord
     belongs_to :user
+    has_many :comments
     
     validates   :title, 
                 presence: { message: "tem de ter um titulo bro"},
