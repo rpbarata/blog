@@ -11,34 +11,30 @@
     <div class="table-responsive-sm">
         <table class="table table-sm">
             <tbody>
-                <tr>
-                    <th scope="row"><%= comment.commenter %></th>
+                <tr>  
+                    <th scope="row">
+                        <%= comment.user.username.present? ? comment.user.username : comment.user.email.split("@").first %>
+                        <br>
+                        <% if comment.user == current_user %>
+                            <%= link_to 'Delete Comment', [:users, comment.article, comment],
+                                method: :delete,
+                                data: { confirm: 'Are you sure you want to permanently delete this comment?' },
+                                class: "btn btn-default"
+                            %>
+                        <% end %>
+                    </th>
                     <td>
                         <%= comment.body %>
-                        <%= link_to 'Delete Comment', [:users, comment.article, comment],
-                            method: :delete,
-                            data: { confirm: 'Are you sure you want to permanently delete this comment?' },
-                            class: "btn btn-default"
-                        %>
                     </td>
             </tbody>
         </table>
     </div>
 <% end %>
 
-<br>
-
 <% if current_user %>
     <h2>Add a comment:</h2>
-    <%= form_for([:users, @article, @article.comments.build ]) do |form| %>
-
+    <%= form_for([:users, @user, @article, @article.comments.build ]) do |form| %>
         <div class="form-group">
-            <%= form.label :commenter, class: "control-label" %>
-            <%= form.text_field :commenter, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-            <%= form.label :body, class: "control-label" %>
             <%= form.text_area :body, rows: "5", class: "form-control" %>
         </div>
 
