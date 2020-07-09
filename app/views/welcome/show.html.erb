@@ -1,0 +1,5 @@
+<p class="text-center"><%= @article.title %></p>
+
+<p class="text-justify"><%= @article.text %></p>
+
+<p class="text-left"> <%= @article.user.username.present? ? @article.user.username : @article.user.email%></p>

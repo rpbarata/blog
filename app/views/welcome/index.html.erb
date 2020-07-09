@@ -1,2 +1,12 @@
-<h1>Public Home Page</h1>
-
+<table class="table">
+    <tbody>
+        <% @articles.each do |article| %>
+            <% if article.is_published %>
+                <tr>
+                    <td><b><%= article.title %></b></td>
+                    <td><%= link_to 'Show', published_article_path(article) %></td>
+                </tr>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>

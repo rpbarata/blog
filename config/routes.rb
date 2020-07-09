@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   draw :users
   
   root to:'welcome#index'
-  get 'published_article', to: 'welcome#index'
+  get 'public_articles_index', to: 'welcome#index'
+  get 'public_article_show/:id', to: 'welcome#show', as: 'published_article'
+
   
 end
