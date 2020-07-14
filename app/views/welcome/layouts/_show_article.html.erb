@@ -1,0 +1,16 @@
+<p class="text-center" ><%= @article.title %></p>
+
+<% if @article.banner? %>
+    <%= image_tag @article.banner.url, class: "img-fluid" %>
+<% end %>
+
+<p class="text-justify"><%= @article.text %></p>
+
+
+
+<p class="text-right"> 
+    <%= @article.user.username.present? ? @article.user.username : @article.user.email%>
+    <% if @article.user.avatar? %>
+        <%= image_tag @article.user.avatar.url, class: "avatar" %>
+    <% end %>
+</p>

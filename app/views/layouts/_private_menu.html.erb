@@ -17,9 +17,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarUsersDropdownMenuLink">
                         <%= link_to('Private area', users_root_path_url, class: "dropdown-item") %></a>
-                        <%= link_to('Edit Profile', users_edit_profile_path(current_user), class: "dropdown-item") %></a>
                         <%= link_to('Account Settings', edit_user_registration_path, method: :get, class: "dropdown-item") %></a>
-                        <%= link_to('logout', destroy_user_session_path, method: :delete, class: "dropdown-item") %></a>
+                        <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "dropdown-item") %></a>
                        
                     </div>
                 </li>
