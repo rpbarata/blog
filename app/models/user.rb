@@ -14,6 +14,7 @@
 #  username             :string
 #
 class User < ApplicationRecord
+
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 
@@ -26,8 +27,8 @@ class User < ApplicationRecord
 
   validates :encrypted_password, :email, presence: true
 
-  validates :username,  length: { in: 3..10 }, 
-                        format: { with: /\A[a-zA-Z]+\z/ }, 
+  validates :username,  length: { in: 3..10 },
+                        format: { with: /\A[a-zA-Z]+\z/ },
                         uniqueness: true,
                         if: -> { username.present? }
 

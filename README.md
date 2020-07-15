@@ -1,7 +1,13 @@
-# README
+# Blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[descricao]
+
+#### Dependencies
+
+* [ruby  *2.6.6*](https://www.ruby-lang.org)
+* [Rails *6.0.3.2*](https://rubyonrails.org/)
+* [PostgreSQL **](https://www.postgresql.org)
+
 
 Things you may want to cover:
 

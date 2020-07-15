@@ -10,16 +10,3 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-
-article1:
-  id: 1
-  title: "my title"
-  is_published: false
-  user_id: 1
-
-article2:
-  id: 2
-  title: "2nd article title"
-  text: "2nd article text"
-  is_published: true
-  user_id: 2

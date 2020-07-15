@@ -10,68 +10,80 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-require 'test_helper'
+require "test_helper"
 
 class ArticleTest < ActiveSupport::TestCase
-  test "valid draft article" do
-    article = articles(:article1)
-    assert article.valid?
+  def setup
+    @user = User.new(
+      email: Faker::Internet.unique.email, 
+      password: Faker::Internet.password
+    )
+
+    @user2 = User.new(
+      email: Faker::Internet.unique.email, 
+      password: Faker::Internet.password, 
+      username: Faker::Internet.unique.username
+    )
+
+    @draft_article = Article.new(
+      title: Faker::Lorem.unique.sentence,
+      is_published: false,
+      user: @user
+    )
+
+    @published_article = Article.new(
+      title: Faker::Lorem.unique.sentence,
+      text: Faker::Lorem.paragraphs(number: 2),
+      is_published: true,
+      user: @user2
+    )
   end
 
+  test "valid draft article" do
+    assert @draft_article.valid?
+  end
 
   test "should not save article without title" do
     article = Article.new
-    article.id = 1
     article.is_published = false
-    article.user = users(:user1)
-
+    article.user = @user2
     assert_not article.valid?
   end
 
   test "should not save an article with a title.length < 5" do
     article = Article.new
-    article.id = 1
     article.title = "qwer"
     article.is_published = false
-    article.user = users(:user1)
-
+    article.user = @user2
     assert_not article.valid?
   end
 
   test "valid published article" do
-    article = articles(:article2)
-    assert article.valid?
+    assert @published_article.valid?
   end
 
   test "should not publish an article without an username" do
     article = Article.new
-    article.id = 1
     article.title = "qwerty"
     article.text = "qwertyuiop"
     article.is_published = true
-    article.user = users(:user1)
-
+    article.user = @user
     assert_not article.valid?
   end
 
   test "should not publish an article without text" do
     article = Article.new
-    article.id = 1
     article.title = "qwerty"
     article.is_published = true
-    article.user = users(:user2)
-
+    article.user = @user2
     assert_not article.valid?
   end
 
-
   test "should not publish an article without title" do
     article = Article.new
-    article.id = 1
     article.text = "qwertyuiop"
     article.is_published = true
-    article.user = users(:user2)
-
+    article.user = @user2
     assert_not article.valid?
   end
 
@@ -79,9 +91,8 @@ class ArticleTest < ActiveSupport::TestCase
     article = Article.new
     article.id = 1
     article.is_published = true
-    article.user = users(:user2)
-
+    article.user = @user2
     assert_not article.valid?
   end
-  
+
 end

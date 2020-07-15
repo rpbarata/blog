@@ -10,8 +10,6 @@ Style/Documentation:
  Enabled: false
 Layout/IndentationConsistency:
  EnforcedStyle: indented_internal_methods
-Rails:
- Enabled: true
 Layout/ParameterAlignment:
  Enabled: false
 Style/StringLiterals:
@@ -70,13 +68,6 @@ Metrics/ModuleLength:
  Max: 200
 Style/IfUnlessModifier:
  Enabled: false
-RSpec/EmptyExampleGroup:
- Enabled: true
-RSpec/ExampleLength:
- Enabled: false
-RSpec/MultipleExpectations:
- Enabled: true
- Max: 5
 Layout/EmptyLinesAroundAttributeAccessor:
  Enabled: true
 Layout/SpaceAroundMethodCallOperator:

@@ -18,14 +18,3 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-
-user1:
-  id: 1
-  email: "user1@example.com"
-  encrypted_password: "111111"
-
-user2:
-  id: 2
-  email: "user2@example.com"
-  encrypted_password: "222222"
-  username: username2
