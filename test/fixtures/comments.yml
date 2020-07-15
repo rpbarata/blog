@@ -10,13 +10,3 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-
-# one:
-#   body: My comment1
-#   article: Welcome to Rails!
-#   user: best.avenger@mail.com
-
-# two:
-#   body: My comment 2
-#   article: Good job!
-#   user: irontony@mail.com

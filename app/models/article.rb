@@ -25,13 +25,15 @@ class Article < ApplicationRecord
     validate   :validate_user_to_publish
 
     def validate_published_article
-        unless is_published && (title.present? && text.present?)
-            errors.add(:is_published, "An article to be published must hava a title and text.")
+        if is_published
+            unless title.present? && text.present?
+                errors.add(:is_published, "An article to be published must hava a title and text.")
+            end
         end
     end
 
     def validate_user_to_publish
-        unless is_published && !user.username.nil?
+        if is_published && user.username.nil?
             errors.add(:is_published, "You must have a username to post an article.")
         end
     end

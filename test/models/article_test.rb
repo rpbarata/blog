@@ -13,44 +13,75 @@
 require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
+  test "valid draft article" do
+    article = articles(:article1)
+    assert article.valid?
+  end
+
+
   test "should not save article without title" do
     article = Article.new
-    assert_not article.save, "Saved the article without a title"
+    article.id = 1
+    article.is_published = false
+    article.user = users(:user1)
+
+    assert_not article.valid?
   end
 
-  test "should not save article with a title with less then 5 characters" do
-    article = Article.new(title: 'qwer')
-    assert_not article.save, "saved the article with a title with less then 5 characters"
-end
+  test "should not save an article with a title.length < 5" do
+    article = Article.new
+    article.id = 1
+    article.title = "qwer"
+    article.is_published = false
+    article.user = users(:user1)
 
-  test "should not publish an article if does not have a title and a text" do
-    article = Article.new(is_published: true)
-    assert_not article.save, "saved a published article without a title"
+    assert_not article.valid?
   end
 
-  # test "should not publish an article if does not have a title" do
-  #   article = Article.new
-  #   article.is_published = true;
-  #   article.text = "my text"
-  #   assert_not article.save, "saved a published article without a title"
-  # end
+  test "valid published article" do
+    article = articles(:article2)
+    assert article.valid?
+  end
 
-  # test "should not publish an article if does not have a text" do
-  #   article = Article.new
-  #   article.is_published = true;
-  #   article.title = "my title"
-  #   assert_not article.save, "saved a published article without a title"
-  # end
+  test "should not publish an article without an username" do
+    article = Article.new
+    article.id = 1
+    article.title = "qwerty"
+    article.text = "qwertyuiop"
+    article.is_published = true
+    article.user = users(:user1)
 
-  # test "should not publish an artice if user does not have hava a username" do
-  #   user = User.new
-  #   user.email = "user0@user0"
+    assert_not article.valid?
+  end
 
-  #   article = Article.new
-  #   article.is_published = true;
-  #   article.title = "my title"
-  #   article.text = "my text"
-  #   article.user = user
-  #   assert_not article.save, "saved an article as published, even without a username"
-  # end
+  test "should not publish an article without text" do
+    article = Article.new
+    article.id = 1
+    article.title = "qwerty"
+    article.is_published = true
+    article.user = users(:user2)
+
+    assert_not article.valid?
+  end
+
+
+  test "should not publish an article without title" do
+    article = Article.new
+    article.id = 1
+    article.text = "qwertyuiop"
+    article.is_published = true
+    article.user = users(:user2)
+
+    assert_not article.valid?
+  end
+
+  test "should not publish an article without title and text" do
+    article = Article.new
+    article.id = 1
+    article.is_published = true
+    article.user = users(:user2)
+
+    assert_not article.valid?
+  end
+  
 end

@@ -11,14 +11,15 @@
 #  updated_at   :datetime         not null
 #
 
-# one:
-#   title: Welcome to Rails!
-#   text: Hello world!
-#   is_published: true
-#   user:  best.avenger@mail.com
+article1:
+  id: 1
+  title: "my title"
+  is_published: false
+  user_id: 1
 
-# two:
-#   title: Good job!
-#   text: Good job
-#   is_published: false
-#   user: irontony@mail.com
+article2:
+  id: 2
+  title: "2nd article title"
+  text: "2nd article text"
+  is_published: true
+  user_id: 2
