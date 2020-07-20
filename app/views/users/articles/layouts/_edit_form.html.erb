@@ -32,9 +32,11 @@
     
     <div>
         <%= form.submit "Save", class: "btn btn-primary" %></td>
-        <%= link_to 'Delete Article', users_article_path(@article),
-            method: :delete,
-            data: { confirm: 'Are you sure you want to permanently delete an article?' },
-            class: "btn btn-danger"%>
+
+        <%= link_to "Delete Article", users_article_path(id: @article.id), method: :delete, data: {
+            "confirm-swal": "Tem a certeza?",
+            "yes-text": "Sim",
+            "no-text": "Não"
+            }, class: "btn btn-danger" %>
     </div>
 <% end %>

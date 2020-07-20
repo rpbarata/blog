@@ -9,19 +9,21 @@
 #  user_id      :bigint
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  banner       :string
 #
 require "test_helper"
 
 class ArticleTest < ActiveSupport::TestCase
+
   def setup
     @user = User.new(
-      email: Faker::Internet.unique.email, 
+      email: Faker::Internet.unique.email,
       password: Faker::Internet.password
     )
 
-    @user2 = User.new(
-      email: Faker::Internet.unique.email, 
-      password: Faker::Internet.password, 
+    @user_with_username = User.new(
+      email: Faker::Internet.unique.email,
+      password: Faker::Internet.password,
       username: Faker::Internet.unique.username
     )
 
@@ -35,7 +37,7 @@ class ArticleTest < ActiveSupport::TestCase
       title: Faker::Lorem.unique.sentence,
       text: Faker::Lorem.paragraphs(number: 2),
       is_published: true,
-      user: @user2
+      user: @user_with_username
     )
   end
 
@@ -46,7 +48,7 @@ class ArticleTest < ActiveSupport::TestCase
   test "should not save article without title" do
     article = Article.new
     article.is_published = false
-    article.user = @user2
+    article.user = @user_with_username
     assert_not article.valid?
   end
 
@@ -54,7 +56,7 @@ class ArticleTest < ActiveSupport::TestCase
     article = Article.new
     article.title = "qwer"
     article.is_published = false
-    article.user = @user2
+    article.user = @user_with_username
     assert_not article.valid?
   end
 
@@ -75,7 +77,7 @@ class ArticleTest < ActiveSupport::TestCase
     article = Article.new
     article.title = "qwerty"
     article.is_published = true
-    article.user = @user2
+    article.user = @user_with_username
     assert_not article.valid?
   end
 
@@ -83,7 +85,7 @@ class ArticleTest < ActiveSupport::TestCase
     article = Article.new
     article.text = "qwertyuiop"
     article.is_published = true
-    article.user = @user2
+    article.user = @user_with_username
     assert_not article.valid?
   end
 
@@ -91,7 +93,7 @@ class ArticleTest < ActiveSupport::TestCase
     article = Article.new
     article.id = 1
     article.is_published = true
-    article.user = @user2
+    article.user = @user_with_username
     assert_not article.valid?
   end
 

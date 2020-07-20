@@ -12,9 +12,11 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  username             :string
+#  avatar               :string
+#  unconfirmed_email    :string
 #
-class User < ApplicationRecord
 
+class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 

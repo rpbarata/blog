@@ -3,7 +3,6 @@
 # Table name: comments
 #
 #  id         :bigint           not null, primary key
-#  commenter  :string
 #  body       :text
 #  article_id :bigint           not null
 #  user_id    :bigint           not null
@@ -13,15 +12,16 @@
 require "test_helper"
 
 class CommentTest < ActiveSupport::TestCase
+
   def setup
     @user = User.new(
-      email: Faker::Internet.unique.email, 
+      email: Faker::Internet.unique.email,
       password: Faker::Internet.password
     )
 
-    @user2 = User.new(
-      email: Faker::Internet.unique.email, 
-      password: Faker::Internet.password, 
+    @user_with_username = User.new(
+      email: Faker::Internet.unique.email,
+      password: Faker::Internet.password,
       username: Faker::Internet.unique.username
     )
 
@@ -35,13 +35,13 @@ class CommentTest < ActiveSupport::TestCase
       title: Faker::Lorem.unique.sentence,
       text: Faker::Lorem.paragraphs(number: 2),
       is_published: true,
-      user: @user2
+      user: @user_with_username
     )
 
     @good_comment = Comment.new(
       body: Faker::Lorem.unique.sentence,
       article: @published_article,
-      user: @user2 
+      user: @user_with_username
     )
   end
 
@@ -52,21 +52,21 @@ class CommentTest < ActiveSupport::TestCase
   test "should hava a body" do
     comment = Comment.new
     comment.article = @published_article
-    comment.user = @user2 
+    comment.user = @user_with_username
     assert_not comment.valid?
   end
 
   test "should belongs to an article" do
     comment = Comment.new
     comment.body = Faker::Lorem.unique.sentence,
-    comment.user = @user2 
+                   comment.user = @user_with_username
     assert_not comment.valid?
   end
 
   test "should belongs to a user" do
     comment = Comment.new
     comment.body = Faker::Lorem.unique.sentence,
-    comment.article = @published_article
+                   comment.article = @published_article
     assert_not comment.valid?
   end
 

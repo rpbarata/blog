@@ -13,11 +13,15 @@
 
     <div class="row">
         <% if comment.user == current_user %>
-            <%= link_to 'Destroy Comment', [:users, comment.article, comment],
-                method: :delete,
-                data: { confirm: 'Are you sure?', text: 'You want to permanently delete this comment?' },
-                class: "btn btn-danger"%>
+            <%= link_to "Remover", users_article_comment_path(article_id: @article.id, id: comment.id), method: :delete, data: {
+                "confirm-swal": "Tem a certeza?",
+                "yes-text": "Sim",
+                "no-text": "Não"
+                }, class: "btn btn-danger" %>
+           
         <% end %>
+
+        
     </div> 
     <hr>
 <% end %>
