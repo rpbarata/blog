@@ -4,7 +4,7 @@
     <%= image_tag @article.banner, class: "img-fluid" %>
 <% end %>
 
-<%= @article.text %>
+<p class="text-justify"><%= @article.text %></p>
 
 <p class="text-right"> 
     <%= @article.user.username.present? ? @article.user.username : @article.user.email%>

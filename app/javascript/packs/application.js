@@ -24,3 +24,5 @@ require("bootstrap/dist/css/bootstrap");
 
 require("trix")
 require("@rails/actiontext")
+
+require("./stimulus.js");
