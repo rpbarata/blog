@@ -12,7 +12,10 @@
 #
 class Article < ApplicationRecord
     belongs_to :user
+
     has_many :comments, dependent: :destroy
+
+    mount_uploader :banner, ImageUploader
     
     validates   :title, 
                 presence: { message: "tem de ter um titulo bro"},

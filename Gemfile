@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Manage Images
-# gem "carrierwave", "~> 2.0"
+gem "carrierwave", "~> 2.0"
 # gem "rmagick"
 
 # Use Active Storage variant
