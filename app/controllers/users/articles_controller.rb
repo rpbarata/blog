@@ -47,7 +47,7 @@ class Users::ArticlesController < Users::UsersController
   private
 
     def article_params
-      params.require(:article).permit(:title, :text, :is_published, :banner, :remove_banner)
+      params.require(:article).permit(:title, :text, :is_published, :banner)
     end
 
 end

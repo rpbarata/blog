@@ -17,7 +17,10 @@ class Article < ApplicationRecord
 
   has_many :comments, dependent: :destroy
 
-  mount_uploader :banner, ImageUploader
+  # mount_uploader :banner, ImageUploader
+  has_one_attached :banner
+
+  has_rich_text :text
 
   validates   :title,
               presence: { message: "All articles must hava a title" },

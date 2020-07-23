@@ -20,7 +20,8 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  mount_uploader :avatar, ImageUploader
+  # mount_uploader :avatar, ImageUploader
+  has_one_attached :avatar
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :recoverable
@@ -33,5 +34,20 @@ class User < ApplicationRecord
                         format: { with: /\A[a-zA-Z]+\z/ },
                         uniqueness: true,
                         if: -> { username.present? }
+
+  before_validation :ensure_avatar_has_a_value
+
+  private
+
+  def ensure_avatar_has_a_value
+       return if self.avatar.present?
+
+       self.avatar.attach(
+          io: File.open(
+            Rails.root.join('app', 'assets', 'images', 'fallback', 'default-avatar.png')
+          ), 
+          filename: 'default-avatar.png', 
+          content_type: 'image/png')
+  end
 
 end

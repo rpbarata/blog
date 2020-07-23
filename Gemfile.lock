@@ -97,8 +97,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
@@ -108,21 +106,8 @@ GEM
       i18n (>= 1.6, < 2)
     ffi (1.13.1)
     ffi (1.13.1-x64-mingw32)
-    ffi-compiler (1.0.1)
-      ffi (>= 1.0.0)
-      rake
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    http (4.4.1)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 2.2)
-      http-parser (~> 1.2.0)
-    http-cookie (1.0.3)
-      domain_name (~> 0.5)
-    http-form_data (2.3.0)
-    http-parser (1.2.1)
-      ffi-compiler (>= 1.0, < 2.0)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     image_processing (1.11.0)
@@ -262,10 +247,6 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2020.1)
       tzinfo (>= 1.0.0)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.7.7)
-    unf_ext (0.0.7.7-x64-mingw32)
     unicode-display_width (1.7.0)
     warden (1.2.8)
       rack (>= 2.0.6)
@@ -304,7 +285,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   faker
-  http
+  image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
   letter_opener

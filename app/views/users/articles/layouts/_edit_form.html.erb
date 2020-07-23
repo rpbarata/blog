@@ -6,19 +6,17 @@
     </div>
 
     <div class="form-group">
-        <%= form.label :text, class: "control-label" %>
-        <%= form.text_area :text, rows: "15", class: "form-control" %>
+      <%= form.label :text, class: "control-label" %>
+      <%= form.rich_text_area :text %>
     </div>
 
     <div class="form-group">
         <%= form.label :banner, class: "control-label" %>
         <%= form.file_field :banner, class: "form-control-file" %>
 
-        <% if @article.banner? %>
+        <% if @article.banner.attached? %>
             <br>
-            <%= image_tag @article.banner.url, class: "img-fluid", alt: "Responsive image" %>
-            <%= form.check_box :remove_banner %>
-                Remove Image
+            <%= image_tag @article.banner, class: "img-fluid", alt: "Responsive image" %>
         <% end %>
 
     </div>

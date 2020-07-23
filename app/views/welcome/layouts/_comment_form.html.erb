@@ -2,7 +2,9 @@
     <h2>Add a comment:</h2>
     <%= form_for([:users, @user, @article, @article.comments.build ]) do |form| %>
         <div class="row">
-            <%= form.text_area :body, rows: "5", class: "form-control" %>
+            <div class="field">
+                <%= form.rich_text_area :body %>
+            </div>
         </div>
 
         <div class="row">
