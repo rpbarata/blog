@@ -6,6 +6,9 @@
 
 <p class="text-justify"><%= @article.text %></p>
 
+<% if @article.user.avatar? %>
+    <%= image_tag @article.user.avatar.url, class: "img-fluid", alt: "Responsive image" %>
+<% end %>
 <p class="text-left"> <%= @article.user.username.present? ? @article.user.username : @article.user.email%></p>
 
 <br>
@@ -16,7 +19,11 @@
         <table class="table table-sm">
             <tbody>
                 <tr>  
-                    <th scope="row">
+            <th scope="row">             
+                        <% if comment.user.avatar? %>
+                            <%= image_tag comment.user.avatar.url, class: "img-fluid", alt: "Responsive image" %>
+                            <br>
+                        <% end %>
                         <%= comment.user.username.present? ? comment.user.username : comment.user.email.split("@").first %>
                         <br>
                         <% if comment.user == current_user %>
@@ -26,7 +33,7 @@
                                 class: "btn btn-default"
                             %>
                         <% end %>
-                    </th>
+                    </th        >
                     <td>
                         <%= comment.body %>
                     </td>

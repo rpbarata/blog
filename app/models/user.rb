@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  mount_uploader :avatar, ImageUploader
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :recoverable
   devise :database_authenticatable, :registerable,
@@ -24,11 +26,9 @@ class User < ApplicationRecord
 
   validates :encrypted_password, :email, presence: true
 
-
-  # validates :username, presence: {message: "Teste: Cena vazia!"}, if: -> { username.blank? }
-#   validates :username,  length: { in: 3..10 }, 
-#                         format: { with: /\A[a-zA-Z]+\z/ }, 
-#                         uniqueness: true,
-#                         unless: Proc.new { |a| a.username.present? }
+  validates :username,  length: { in: 3..10 }, 
+                        format: { with: /\A[a-zA-Z]+\z/ }, 
+                        uniqueness: true,
+                        if: -> { !username.present? }
 
 end

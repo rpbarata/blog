@@ -18,13 +18,21 @@ class Article < ApplicationRecord
     mount_uploader :banner, ImageUploader
     
     validates   :title, 
-                presence: { message: "tem de ter um titulo bro"},
+                presence: { message: "All articles must hava a title"},
                 length: { minimum: 5 }
+
     validate   :validate_published_article
+    validate   :validate_user_to_publish
 
     def validate_published_article
-        if is_published && title.length < 5 && text.length == 0
-            errors.add(:is_published, "erro tamanho")
+        unless is_published && (title.present? && text.present?)
+            errors.add(:is_published, "An article to be published must hava a title and text.")
+        end
+    end
+
+    def validate_user_to_publish
+        unless is_published && !user.username.nil?
+            errors.add(:is_published, "You must have a username to post an article.")
         end
     end
 end

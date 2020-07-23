@@ -3,9 +3,21 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
+  <div class=”field”>
     <%= f.label :username %><br />
     <%= f.text_field :username, autofocus: true %>
+  </div>
+
+  <% if current_user.avatar? %>
+    <br>
+    <%= image_tag current_user.avatar.url, class: "img-fluid", alt: "Responsive image" %>
+    <%= f.check_box :remove_avatar %>
+        Remove Image
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :avatar, class: "control-label" %>
+    <%= f.file_field :avatar, class: "form-control-file" %>
   </div>
 
   <div class="field">
