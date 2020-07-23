@@ -17,6 +17,7 @@
 #
 
 class User < ApplicationRecord
+
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 
@@ -39,15 +40,16 @@ class User < ApplicationRecord
 
   private
 
-  def ensure_avatar_has_a_value
-       return if self.avatar.present?
+    def ensure_avatar_has_a_value
+      return if avatar.present?
 
-       self.avatar.attach(
-          io: File.open(
-            Rails.root.join('app', 'assets', 'images', 'fallback', 'default-avatar.png')
-          ), 
-          filename: 'default-avatar.png', 
-          content_type: 'image/png')
-  end
+      avatar.attach(
+        io: File.open(
+          Rails.root.join("app", "assets", "images", "fallback", "default-avatar.png")
+        ),
+        filename: "default-avatar.png",
+        content_type: "image/png"
+      )
+    end
 
 end

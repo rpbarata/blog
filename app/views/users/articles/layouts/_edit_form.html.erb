@@ -11,15 +11,9 @@
     </div>
 
     <div class="form-group">
-        <%= form.label :banner, class: "control-label" %>
-        <%= form.file_field :banner, class: "form-control-file" %>
-
-        <% if @article.banner.attached? %>
-            <br>
-            <%= image_tag @article.banner, class: "img-fluid", alt: "Responsive image" %>
-        <% end %>
-
-    </div>
+    <%= form.label :banner, class: "control-label" %>
+    <%= form.file_field :banner, class: "form-control-file" %>
+</div>
 
     <div class="form-check">
         <%= form.check_box :is_published, class: "form-check-input" %>
