@@ -1,1 +1,15 @@
-<h1> Private area </h1>
+<h1>My Articles</h1>
+
+<table class="table">
+    <tbody>
+        <% @articles.each do |article| %>
+            <% if article.user == current_user%>
+                <tr>
+                <td><b><%= article.title %></b></td>
+                <td><%= article.is_published ? "Published" : "Not Published" %></td>
+                <td><%= link_to 'Edit', edit_users_article_path(article) %></td>
+                </tr>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>
