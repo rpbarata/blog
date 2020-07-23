@@ -11,12 +11,12 @@
 #  updated_at :datetime         not null
 #
 
-one:
-  body: MyText
-  article: one
-  user: one
+# one:
+#   body: My comment1
+#   article: Welcome to Rails!
+#   user: best.avenger@mail.com
 
-two:
-  body: MyText
-  article: two
-  user: two
+# two:
+#   body: My comment 2
+#   article: Good job!
+#   user: irontony@mail.com

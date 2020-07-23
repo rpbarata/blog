@@ -22,13 +22,13 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :recoverable
   devise :database_authenticatable, :registerable,
-         :rememberable, :validatable
+         :rememberable, :validatable, :confirmable
 
   validates :encrypted_password, :email, presence: true
 
   validates :username,  length: { in: 3..10 }, 
                         format: { with: /\A[a-zA-Z]+\z/ }, 
                         uniqueness: true,
-                        if: -> { !username.present? }
+                        if: -> { username.present? }
 
 end

@@ -1,0 +1,40 @@
+<%= form_for([:users, @article]) do |form| %>
+ 
+    <div class="form-group">
+        <%= form.label :title, class: "control-label" %>
+        <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= form.label :text, class: "control-label" %>
+        <%= form.text_area :text, rows: "15", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= form.label :banner, class: "control-label" %>
+        <%= form.file_field :banner, class: "form-control-file" %>
+
+        <% if @article.banner? %>
+            <br>
+            <%= image_tag @article.banner.url, class: "img-fluid", alt: "Responsive image" %>
+            <%= form.check_box :remove_banner %>
+                Remove Image
+        <% end %>
+
+    </div>
+
+    <div class="form-check">
+        <%= form.check_box :is_published, class: "form-check-input" %>
+        <%= form.label :is_published, "Publish", class: "form-check-label" %>
+        
+    </div>
+
+    
+    <div>
+        <%= form.submit "Save", class: "btn btn-primary" %></td>
+        <%= link_to 'Delete Article', users_article_path(@article),
+            method: :delete,
+            data: { confirm: 'Are you sure you want to permanently delete an article?' },
+            class: "btn btn-danger"%>
+    </div>
+<% end %>

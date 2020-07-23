@@ -16,7 +16,16 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'valid user' do
+    user = User.new(  email: "user@example.com", 
+                      password: "123456", password_confirmation: "123456"
+                    )
+                    byebug
+    assert user.valid?
+  end
+
+  test 'invalid username length' do
+    user = User.new(email: "user@example.com", encrypted_password: "123456", username: 'qw')
+    assert_not user.save
+  end
 end

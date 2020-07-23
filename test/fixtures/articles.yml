@@ -11,12 +11,14 @@
 #  updated_at   :datetime         not null
 #
 
-one:
-  title: MyString
-  text: MyText
-  is_published: false
+# one:
+#   title: Welcome to Rails!
+#   text: Hello world!
+#   is_published: true
+#   user:  best.avenger@mail.com
 
-two:
-  title: MyString
-  text: MyText
-  is_published: false
+# two:
+#   title: Good job!
+#   text: Good job
+#   is_published: false
+#   user: irontony@mail.com

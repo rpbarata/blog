@@ -19,14 +19,12 @@
 # below each fixture, per the syntax in the comments below
 #
 
-Steve:
-  username: Steve Rogers
-  email:  best.avenger@mail.com
-  password: lovetony123
-  password_confirmation: lovetony123
+# Steve:
+#   username: Steve Rogers
+#   email:  best.avenger@mail.com
+#   encrypted_password: lovetony123
 
-Tony:
-  username:
-  email:  irontony@mail.com
-  password: hatecap
-  password_confirmation: hatecap
+# Tony:
+#   username:
+#   email:  irontony@mail.com
+#   encrypted_password: hatecap
