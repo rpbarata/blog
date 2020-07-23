@@ -12,13 +12,16 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  username             :string
+#  avatar               :string
+#  unconfirmed_email    :string
 #
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
+
   def setup
     @user = User.new(email: Faker::Internet.unique.email, password: Faker::Internet.password)
-    @user2 = User.new(email: Faker::Internet.unique.email, password: Faker::Internet.password)
+    @user_with_username = User.new(email: Faker::Internet.unique.email, password: Faker::Internet.password)
   end
 
   test "valid user without name" do
@@ -30,7 +33,7 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
 
-  test 'valid user with blank username' do
+  test "valid user with blank username" do
     @user.username = "    "
     assert @user.valid?
   end
@@ -40,8 +43,8 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?, "Username must have 3 characters"
   end
 
-  test 'invalid username format with only numbers' do
-    @user.username = '1234'
+  test "invalid username format with only numbers" do
+    @user.username = "1234"
     assert_not @user.valid?, "Username must only contain characters"
   end
 
@@ -53,7 +56,8 @@ class UserTest < ActiveSupport::TestCase
   # test 'invalid username: uniqueness' do
   #   byebug
   #   @user.username = Faker::Internet.unique.username
-  #   @user2.username = @user.username
-  #   assert_not user2.valid?
+  #   @user_with_username.username = @user.username
+  #   assert_not user_with_username.valid?
   # end
+
 end

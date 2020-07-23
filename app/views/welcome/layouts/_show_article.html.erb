@@ -1,16 +1,15 @@
 <p class="text-center" ><%= @article.title %></p>
 
-<% if @article.banner? %>
-    <%= image_tag @article.banner.url, class: "img-fluid" %>
+<% if @article.banner.attached? %>
+    <%= image_tag @article.banner, class: "img-fluid" %>
 <% end %>
 
-<p class="text-justify"><%= @article.text %></p>
-
-
+<%= @article.text %>
 
 <p class="text-right"> 
     <%= @article.user.username.present? ? @article.user.username : @article.user.email%>
-    <% if @article.user.avatar? %>
-        <%= image_tag @article.user.avatar.url, class: "avatar" %>
+    <% if @article.user.avatar.attached? %>
+        <%= image_tag @article.user.avatar.variant(resize_to_limit: [50, 50]) %>
+
     <% end %>
 </p>

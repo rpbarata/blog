@@ -7,13 +7,8 @@
             <%= f.text_field :username, autofocus: true, class: "form-control" %>
         </div>
     
-        <% if current_user.avatar? %>
-            <%= image_tag current_user.avatar.url, class: "img-fluid", alt: "Responsive image" %>
-
-            <div class="form-group">
-                <%= f.check_box :remove_avatar, class: "form-check-input" %>
-                <label class="form-check-label" >Remove Image</label>   
-            </div>
+        <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar.variant(resize_to_limit: [80, 80]), class: "img-fluid", alt: "Responsive image" %>
         <% end %>
     
         <div class="form-group">
