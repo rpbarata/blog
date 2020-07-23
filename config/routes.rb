@@ -1,4 +1,4 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do
   # load route function
   def draw(routes_name)
     instance_eval(
@@ -9,10 +9,9 @@ Rails.application.routes.draw do
   end
 
   draw :users
-  
-  root to:'welcome#index'
-  get 'public_articles_index', to: 'welcome#index'
-  get 'public_article_show/:id', to: 'welcome#show', as: 'published_article'
 
-  
+  root to: "welcome#index"
+  get "public_articles_index", to: "welcome#index"
+  get "public_article_show/:id", to: "welcome#show", as: "published_article"
+
 end

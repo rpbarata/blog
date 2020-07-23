@@ -11,28 +11,32 @@
 #  updated_at   :datetime         not null
 #
 class Article < ApplicationRecord
-    belongs_to :user
 
-    has_many :comments, dependent: :destroy
+  belongs_to :user
 
-    mount_uploader :banner, ImageUploader
-    
-    validates   :title, 
-                presence: { message: "All articles must hava a title"},
-                length: { minimum: 5 }
+  has_many :comments, dependent: :destroy
 
-    validate   :validate_published_article
-    validate   :validate_user_to_publish
+  mount_uploader :banner, ImageUploader
 
-    def validate_published_article
-        unless is_published && (title.present? && text.present?)
-            errors.add(:is_published, "An article to be published must hava a title and text.")
-        end
+  validates   :title,
+              presence: { message: "All articles must hava a title" },
+              length: { minimum: 5 }
+
+  validate   :validate_published_article
+  validate   :validate_user_to_publish
+
+  def validate_published_article
+    if is_published
+      unless title.present? && text.present?
+        errors.add(:is_published, "An article to be published must hava a title and text.")
+      end
     end
+  end
 
-    def validate_user_to_publish
-        unless is_published && !user.username.nil?
-            errors.add(:is_published, "You must have a username to post an article.")
-        end
+  def validate_user_to_publish
+    if is_published && user.username.nil?
+      errors.add(:is_published, "You must have a username to post an article.")
     end
+  end
+
 end

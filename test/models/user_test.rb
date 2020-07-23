@@ -13,19 +13,47 @@
 #  updated_at           :datetime         not null
 #  username             :string
 #
-require 'test_helper'
+require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  test 'valid user' do
-    user = User.new(  email: "user@example.com", 
-                      password: "123456", password_confirmation: "123456"
-                    )
-                    byebug
-    assert user.valid?
+  def setup
+    @user = User.new(email: Faker::Internet.unique.email, password: Faker::Internet.password)
+    @user2 = User.new(email: Faker::Internet.unique.email, password: Faker::Internet.password)
   end
 
-  test 'invalid username length' do
-    user = User.new(email: "user@example.com", encrypted_password: "123456", username: 'qw')
-    assert_not user.save
+  test "valid user without name" do
+    assert @user.valid?
   end
+
+  test "valid user with name" do
+    @user.username = Faker::Internet.unique.username
+    assert @user.valid?
+  end
+
+  test 'valid user with blank username' do
+    @user.username = "    "
+    assert @user.valid?
+  end
+
+  test "invalid username length" do
+    @user.username = "ab"
+    assert_not @user.valid?, "Username must have 3 characters"
+  end
+
+  test 'invalid username format with only numbers' do
+    @user.username = '1234'
+    assert_not @user.valid?, "Username must only contain characters"
+  end
+
+  test "invalid username format with characters and numbers" do
+    @user.username = "abc1234"
+    assert_not @user.valid?, "Username must only contain characters"
+  end
+
+  # test 'invalid username: uniqueness' do
+  #   byebug
+  #   @user.username = Faker::Internet.unique.username
+  #   @user2.username = @user.username
+  #   assert_not user2.valid?
+  # end
 end

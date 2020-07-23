@@ -87,6 +87,10 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
+    database_cleaner (1.8.5)
+    database_cleaner-active_record (1.8.0)
+      activerecord
+      database_cleaner (~> 1.8.0)
     devise (4.7.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -233,6 +237,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sweetalert2 (7.25.6)
+      railties (>= 3.1.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -277,6 +283,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   carrierwave (~> 2.0)
+  database_cleaner-active_record
   devise
   dotenv-rails
   faker
@@ -292,6 +299,7 @@ DEPENDENCIES
   rubocop-faker
   sass-rails (>= 6)
   selenium-webdriver
+  sweetalert2
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)

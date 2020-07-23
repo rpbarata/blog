@@ -18,13 +18,3 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-
-# Steve:
-#   username: Steve Rogers
-#   email:  best.avenger@mail.com
-#   encrypted_password: lovetony123
-
-# Tony:
-#   username:
-#   email:  irontony@mail.com
-#   encrypted_password: hatecap
