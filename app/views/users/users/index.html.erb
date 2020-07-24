@@ -4,7 +4,7 @@
     <tbody>
         <% @articles.each do |article| %>
             <% if article.user == current_user%>
-                <tr data-href="<%= edit_users_article_path(article) %>" data-action="click->usersIndex#open_href" style="cursor: pointer;">
+                <tr data-href="<%= edit_users_article_path(article) %>" data-action="click->usersIndex#openHref" style="cursor: pointer;">
                     <td><b><%= article.title %></b></td>
                     <td><%= article.is_published ? "Published" : "Not Published" %></td>
                 </tr>

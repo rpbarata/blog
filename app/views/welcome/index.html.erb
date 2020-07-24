@@ -3,10 +3,14 @@
         <% @articles.each do |article| %>
             <% if article.is_published %>
                 <tr data-href="<%= published_article_path(article) %>" 
-                    data-action="click->welcomeIndex#open_href" 
+                    data-action="click->welcomeIndex#openHref" 
                     style="cursor: pointer;" class="pointer">
-                    <td><%= image_tag article.banner %></td>
-                    <td><b><%= article.title %></b></td>
+
+                    <td>
+                        <b><p class="text-center"><%= article.title %></p></b>
+                        <%= image_tag article.banner %>
+                    </td>
+                    
                 </tr>
             <% end %>
         <% end %>
