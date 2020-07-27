@@ -2,7 +2,7 @@
 <% @article.comments.each do |comment| %>
     <div class="row">
         <% if comment.user.avatar.attached? %>
-            <%= image_tag comment.user.avatar.variant(resize_to_limit: [50, 50]), class: "avatar" %>
+            <%= image_tag comment.user.avatar.variant(resize_to_limit: [50, 50]), class: "img-thumbnail"  %>
         <% end %>   
         <%= comment.user.username.present? ? comment.user.username : comment.user.email.split("@").first %>
     </div>

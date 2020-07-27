@@ -7,13 +7,15 @@
             <%= f.text_field :username, autofocus: true, class: "form-control" %>
         </div>
     
-        <% if current_user.avatar.attached? %>
-            <%= image_tag current_user.avatar.variant(resize_to_limit: [80, 80]), class: "img-fluid", alt: "Responsive image" %>
-        <% end %>
-    
-        <div class="form-group">
-            <%= f.label :avatar, class: "control-label" %>
-            <%= f.file_field :avatar, class: "form-control-file" %>
+        <div data-controller="editUser">
+            <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar.variant(resize_to_limit: [80, 80]), class: "img-fluid", alt: "Avatar image", data: {target: "editUser.output"} %>
+            <% end %>
+        
+            <div class="form-group">
+                <%= f.label "Avatar", class: "control-label" %>
+                <%= f.file_field :avatar, class: "form-control-file", data: { action: "editUser#readURL" } %>
+            </div>
         </div>
     
         <div class="form-group">

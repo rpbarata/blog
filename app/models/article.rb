@@ -25,6 +25,10 @@ class Article < ApplicationRecord
   validates   :title,
               presence: { message: "All articles must hava a title" },
               length: { minimum: 5 }
+              
+  validates   :banner,
+              presence: {message: "An article must have a banner to be published" },
+              if: -> { is_published }
 
   validate   :validate_published_article
   validate   :validate_user_to_publish
