@@ -1,20 +1,20 @@
 # == Schema Information
 #
-# Table name: comments
+# Table name: reply_comments
 #
 #  id         :bigint           not null, primary key
 #  body       :text
-#  article_id :bigint           not null
-#  user_id    :bigint           not null
+#  comment_id :bigint           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint           not null
 #
-class Comment < ApplicationRecord
+class ReplyComment < ApplicationRecord
 
-  belongs_to :article
+  belongs_to :comment
   belongs_to :user
+
   has_rich_text :body
-  has_many :reply_comments, dependent: :destroy
   validates :body, presence: true
 
 end
