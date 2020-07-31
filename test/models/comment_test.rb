@@ -58,8 +58,8 @@ class CommentTest < ActiveSupport::TestCase
 
   test "should belongs to an article" do
     comment = Comment.new
-    comment.body = Faker::Lorem.unique.sentence,
-                   comment.user = @user_with_username
+    comment.body = Faker::Lorem.unique.sentence
+    comment.user = @user_with_username
     assert_not comment.valid?
   end
 

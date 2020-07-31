@@ -29,7 +29,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "valid user with name" do
-    @user.username = Faker::Internet.unique.username
+    @user.username = "user"
     assert @user.valid?
   end
 
@@ -52,12 +52,5 @@ class UserTest < ActiveSupport::TestCase
     @user.username = "abc1234"
     assert_not @user.valid?, "Username must only contain characters"
   end
-
-  # test 'invalid username: uniqueness' do
-  #   byebug
-  #   @user.username = Faker::Internet.unique.username
-  #   @user_with_username.username = @user.username
-  #   assert_not user_with_username.valid?
-  # end
 
 end
