@@ -1,0 +1,17 @@
+<p class="text-center" ><%= @article.title %></p>
+
+<% if @article.banner.attached? %>
+    <%= image_tag @article.banner, class: "img-fluid" %>
+<% end %>
+
+<div class="text">
+    <%= @article.text %>
+</div>
+
+<p class="text-right"> 
+    <%= @article.user.username.present? ? @article.user.username : @article.user.email%>
+    <% if @article.user.avatar.attached? %>
+        <%= image_tag @article.user.avatar.variant(resize_to_limit: [50, 50]), class: "img-thumbnail" %>
+
+    <% end %>
+</p>

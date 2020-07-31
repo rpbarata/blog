@@ -3,7 +3,7 @@ class Users::CommentsController < Users::UsersController
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params.merge(user_id: current_user.id))
-    redirect_to published_article_path(@article, anchor: "comments_sections")
+    redirect_to published_article_path(@article)
   end
 
   def destroy
