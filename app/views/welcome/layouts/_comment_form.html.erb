@@ -1,0 +1,14 @@
+<% if current_user %>
+    <h2>Add a comment:</h2>
+    <%= form_for([:users, @user, @article, @article.comments.build ]) do |form| %>
+        <div class="row">
+            <div class="field">
+                <%= form.rich_text_area :body %>
+            </div>
+        </div>
+
+        <div class="row">
+            <td><%= form.submit "Send", class: "btn btn-primary" %></td>
+        </div
+    <% end %>
+<% end %>

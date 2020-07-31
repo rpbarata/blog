@@ -14,7 +14,6 @@ class Comment < ApplicationRecord
   belongs_to :article
   belongs_to :user
   has_rich_text :body
-  has_many :reply_comments, dependent: :destroy
   validates :body, presence: true
 
 end

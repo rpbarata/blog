@@ -34,7 +34,7 @@ const allowAction = (element) => {
   return false;
 };
 
-const handleConfirm = function (element) {
+const handleConfirm = (element) => {
   if (!allowAction(this)) {
     Rails.stopEverything(element);
   }

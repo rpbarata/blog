@@ -4,14 +4,14 @@
             <% if article.is_published %>
                 <tr data-href="<%= published_article_path(article) %>" 
                     data-action="click->welcomeIndex#openHref" 
-                    style="cursor: pointer;" 
-                    class="pointer">
+                    style="cursor: pointer;" class="pointer">
 
                     <td>
                         <b><p class="text-center"><%= article.title %></p></b>
-                        <p class="text-center"><%= image_tag article.banner.variant(resize_to_limit: [900, 450]) %></p>
+                        <%= image_tag article.banner %>
                     </td>
-
+                    
+                </tr>
             <% end %>
         <% end %>
     </tbody>
