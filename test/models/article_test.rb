@@ -61,6 +61,13 @@ class ArticleTest < ActiveSupport::TestCase
   end
 
   test "valid published article" do
+    # @published_article.banner.attach(
+    #   io: File.open(
+    #     Rails.root.join("app", "assets", "images", "fallback", "default_banner.jpg")
+    #   ),
+    #   filename: "default_banner.jpg",
+    #   content_type: "image/jpg"
+    # )
     assert @published_article.valid?
   end
 

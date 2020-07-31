@@ -14,20 +14,26 @@ else
  against=202a3943
 fi
 
-# Check if rubocop is installed
-bin/bundle exec rubocop -v >/dev/null 2>&1 || {
- echo >&2 "${red}[Ruby Style][Fatal]: Add rubocop to your Gemfile";
- exit 1;
-}
+# Check if rubocop is installed for the current project
+rubocop -v >/dev/null 2>&1 || { echo >&2 "${red}[Ruby Style][Fatal]: Add rubocop to your Gemfile"; exit 1; }
+
 echo "${green}[Ruby Style][Info]: Checking Ruby Style${NC}"
 # Check if rubocop rules yml exists
 if [ ! -f ".rubocop.yml" ]; then
  echo "${yellow}[Ruby Style][Warning]: No .rubocop.yml config file.${NC}"
 fi
 # Run rubocop on the staged files
-bin/bundle exec rubocop --parallel
+rubocop --parallel
 if [ $? -ne 0 ]; then
  echo "${red}[Ruby Style][Error]: Fix the issues and commit again${NC}"
+ exit 1
+fi
+
+#Run ESLint
+echo "${green}[JavaScript Style][Info]: Checking JavaScript Style${NC}"
+eslint app/javascript/**
+if [ $? -ne 0 ]; then
+ echo "${red}[JavaScript Style][Error]: Fix the issues and commit again${NC}"
  exit 1
 fi
 
