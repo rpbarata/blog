@@ -31,6 +31,31 @@ if [ $? -ne 0 ]; then
  exit 1
 fi
 
+# Check if ESlint is installed
+which eslint &> /dev/null
+if [[ "$?" == 1 ]]; then
+  echo >&2 "${red}[JavaScript Style][Info]: Install ESlint";
+  exit 1
+fi
+# Check if ruboESlintcop rules js exists
+if [ ! -f ".eslintrc.js" ]; then
+ echo "${yellow}[JavaScript Style][Warning]: No .eslintrc.js config file.${NC}"
+fi
+#Run ESLint
+eslint app/javascript/**
+if [ $? -ne 0 ]; then
+ echo "${red}[JavaScript Style][Error]: Fix the issues and commit again${NC}"
+ exit 1
+fi
+
+# Run minitest
+echo "${green}[Minitest][Info]: Checking Minitest tests${NC}"
+bin/bundle exec test test/models
+if [ $? -ne 0 ]; then
+  echo "${red}[Minitest][Error]: Fix the issues and commit again${NC}"
+  exit 1
+fi
+
 # Run Specs
 # echo "${green}[RSpec][Info]: Checking Rspec tests${NC}"
 # bin/bundle exec rspec spec

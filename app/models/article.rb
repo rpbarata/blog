@@ -25,13 +25,9 @@ class Article < ApplicationRecord
   validates   :title,
               presence: { message: "All articles must hava a title" },
               length: { minimum: 5 }
-              
-  validates   :banner,
-              presence: {message: "An article must have a banner to be published" },
-              if: -> { is_published }
-
   validate   :validate_published_article
   validate   :validate_user_to_publish
+  before_validation :ensure_banner_has_a_value
 
   def validate_published_article
     if is_published
@@ -46,5 +42,19 @@ class Article < ApplicationRecord
       errors.add(:is_published, "You must have a username to post an article.")
     end
   end
+
+  private
+
+    def ensure_banner_has_a_value
+      return if banner.present?
+
+      banner.attach(
+        io: File.open(
+          Rails.root.join("app", "assets", "images", "fallback", "default_banner.jpg")
+        ),
+        filename: "default_banner.jpg",
+        content_type: "image/jpg"
+      )
+    end
 
 end
