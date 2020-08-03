@@ -45,16 +45,16 @@ class Article < ApplicationRecord
 
   private
 
-  def ensure_banner_has_a_value
-    return if banner.present?
+    def ensure_banner_has_a_value
+      return if banner.present?
 
-    banner.attach(
-      io: File.open(
-        Rails.root.join("app", "assets", "images", "fallback", "default_banner.jpg")
-      ),
-      filename: "default_banner.jpg",
-      content_type: "image/jpg"
-    )
-  end
+      banner.attach(
+        io: File.open(
+          Rails.root.join("app", "assets", "images", "fallback", "default_banner.jpg")
+        ),
+        filename: "default_banner.jpg",
+        content_type: "image/jpg"
+      )
+    end
 
 end

@@ -1,4 +1,5 @@
 class CreateReplyComments < ActiveRecord::Migration[6.0]
+
   def change
     create_table :reply_comments do |t|
       t.text :body
@@ -8,4 +9,5 @@ class CreateReplyComments < ActiveRecord::Migration[6.0]
       t.timestamps
     end
   end
+
 end
