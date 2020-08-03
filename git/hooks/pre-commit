@@ -31,6 +31,14 @@ if [ $? -ne 0 ]; then
  exit 1
 fi
 
+#Run ESLint
+echo "${green}[JavaScript Style][Info]: Checking JavaScript Style${NC}"
+eslint app/javascript/**
+if [ $? -ne 0 ]; then
+ echo "${red}[JavaScript Style][Error]: Fix the issues and commit again${NC}"
+ exit 1
+fi
+
 # Run Specs
 # echo "${green}[RSpec][Info]: Checking Rspec tests${NC}"
 # bin/bundle exec rspec spec

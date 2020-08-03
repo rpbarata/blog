@@ -29,7 +29,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "valid user with name" do
-    @user.username = Faker::Internet.unique.username
+    @user.username = "user"
     assert @user.valid?
   end
 

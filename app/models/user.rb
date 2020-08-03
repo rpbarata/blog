@@ -20,8 +20,7 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
-
-  # mount_uploader :avatar, ImageUploader
+  has_many :reply_comments, dependent: :destroy
   has_one_attached :avatar
 
   # Include default devise modules. Others available are:
@@ -30,12 +29,10 @@ class User < ApplicationRecord
          :rememberable, :validatable, :confirmable
 
   validates :encrypted_password, :email, presence: true
-
   validates :username,  length: { in: 3..10 },
                         format: { with: /\A[a-zA-Z]+\z/ },
                         uniqueness: true,
                         if: -> { username.present? }
-
   before_validation :ensure_avatar_has_a_value
 
   private
