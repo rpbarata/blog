@@ -1,5 +1,8 @@
-Rails.application.configure do
+Rails.application.configure do 
   # Settings specified here will take precedence over those in config/application.rb.
+
+  # default app host to be used with urls definition
+  config.default_url_options = { host: ENV.fetch("APP_HOST", "http://localhost:3000") }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -16,11 +19,11 @@ Rails.application.configure do
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = false
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"] == "true"
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
@@ -61,10 +64,22 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "blog_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: ENV.fetch("APP_HOST", "http://localhost"), port: 3000 }
+  config.action_mailer.default charset: "utf-8"
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    user_name:            ENV.fetch("GMAIL_USER_NAME"),
+    password:             ENV.fetch("GMAIL_USER_PASSWORD"),
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
