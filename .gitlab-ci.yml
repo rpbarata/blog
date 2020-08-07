@@ -11,6 +11,9 @@ build-container:
   stage: build
   rules:
     - if: $CI_COMMIT_TAG
+  before_script: 
+    - echo $GMAIL_USER_NAME
+    - echo $GMAIL_USER_PASSWORD 
   script:
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
     - docker build -t $DOCKER_IMAGE -f Dockerfile .
